@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fba261ec-8f9a-4596-98bc-9897f6a3fcad" name="Changes" comment="Combined movies.csv and actors.csv into one movies_and_actors.csv">
+    <list default="true" id="fba261ec-8f9a-4596-98bc-9897f6a3fcad" name="Changes" comment="Updated the movies_and_actors.csv to include all movies and actors">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -85,7 +85,8 @@
       <updated>1710975462840</updated>
       <workItem from="1710975468097" duration="4952000" />
       <workItem from="1712342916626" duration="15000" />
-      <workItem from="1712786741218" duration="6730000" />
+      <workItem from="1712786741218" duration="6864000" />
+      <workItem from="1713215152553" duration="2048000" />
     </task>
     <task id="LOCAL-00001" summary="Creating main.py">
       <option name="closed" value="true" />
@@ -127,7 +128,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712789418228</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Updated the movies_and_actors.csv to include all movies and actors">
+      <option name="closed" value="true" />
+      <created>1712793777689</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1712793777689</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,9 +147,10 @@
     <MESSAGE value="Work from 03/20/2024&#10;&#10;We started reading the .csv file into a node graph and displaying it on plotly.&#10;&#10;The number of entries is too much so we reduced the actors.csv file to 10000 entries and movies.csv to 162 entries." />
     <MESSAGE value="Started new idea so cleaned out main.py" />
     <MESSAGE value="Combined movies.csv and actors.csv into one movies_and_actors.csv" />
-    <option name="LAST_COMMIT_MESSAGE" value="Combined movies.csv and actors.csv into one movies_and_actors.csv" />
+    <MESSAGE value="Updated the movies_and_actors.csv to include all movies and actors" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the movies_and_actors.csv to include all movies and actors" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Final_Project$main.coverage" NAME="main Coverage Results" MODIFIED="1712793678102" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Final_Project$main.coverage" NAME="main Coverage Results" MODIFIED="1713217069064" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
