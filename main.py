@@ -25,12 +25,6 @@ with open('movies_and_actors.csv', newline='', encoding='utf-8') as csvfile:
                 adjacency_list[actor1][actor2] += 1
                 adjacency_list[actor2][actor1] += 1
 
-# Optionally remove self-loops and edges with weight of 1
-for actor in adjacency_list:
-    if actor in adjacency_list[actor]:
-        del adjacency_list[actor][actor]
-    adjacency_list[actor] = {other_actor: weight for other_actor, weight in adjacency_list[actor].items() if weight > 1}
-
 # Print the adjacency list representation of the graph
 for actor, neighbors in adjacency_list.items():
     print(f"{actor}: {neighbors}")
