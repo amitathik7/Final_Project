@@ -1,4 +1,3 @@
-import csv
 import pickle
 import time
 from collections import defaultdict
@@ -6,12 +5,14 @@ from collections import defaultdict
 def default_dict():
     return defaultdict(list)
 
-with open("movies_and_actors.pickle", "rb") as f:
+start = time.time()
+with open("pickle_files/adjacency_list.pkl", "rb") as f:
     adjacency_list = pickle.load(f)
+end = time.time()
 
-actor_names = list()
+print(f'Time taken to load adjacency list: {end - start}')
+def dijsktra_search(start_name, end_name):
+    return -1
 
-for actors, movies in adjacency_list.items():
-    actor_names.append(actors)
-
-print(actor_names)
+def bellman_ford_search(start_name, end_name):
+    return -1
