@@ -4,10 +4,14 @@ import time
 from collections import defaultdict
 
 def dijsktra_search(start_name, end_name, adj_list):
-    if start_name not in adj_list.keys() or end_name not in adj_list.keys():
-        return -1, -1
-
     start = time.time()
+    if start_name not in adj_list.keys() or end_name not in adj_list.keys():
+        return -1, (time.time() - start)
+
+    # This is for when the two actors given are the same in which case their compataibility score would be invalid
+    if start_name == end_name:
+        return -1, (time.time() - start)
+
     # We initialize the distance map and the set of visited actors/vertices
     distance = defaultdict(float)
     visited_actors = set()
@@ -41,14 +45,8 @@ def dijsktra_search(start_name, end_name, adj_list):
         if (min == sys.maxsize):
             curr_actor = 'invalid'
 
-        # print(curr_actor, distance[curr_actor], len(visited_actors))
-
-    end = time.time()
-    # print(f'Final Score: {1 / distance[end_name]}')
-    # print(f'Time Taken: {end - start}')
     final_score = 1 / distance[end_name]
-    time_taken = end - start
-    return final_score, time_taken
+    return final_score, (time.time() - start)
 
 
 def bellman_ford_search(start_name, end_name, adj_list):
