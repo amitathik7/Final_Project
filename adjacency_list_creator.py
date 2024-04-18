@@ -41,15 +41,29 @@ with open('csv_files/movies_and_actors.csv', newline='', encoding='utf-8') as cs
                 adjacency_list[actor2][actor1].append(movie_name)
 end = time.time()
 
+sorted_list = dict(sorted(adjacency_list.items(), key= lambda item: len(item[1])))
+final_list = defaultdict(default_dict)
+
+i = 0
+
+# Sorting it and taking only the top 10000 actors by connection count because before
+# the connection count was too much
+for key, value in reversed(sorted_list.items()):
+    if i >= 10000:
+        break
+    print(key, len(value))
+    final_list[key] = value
+    i += 1
+
 print(f'Time take for creating adjacency list: {end - start}')
 
 start = time.time()
 # Now we save the adjacency list into a .pkl file
-# It reduces the time it takes for making the adjacency list from ~31 seconds to ~18 seconds
-# It does take ~15 seconds to store it as the .pkl file but since we only do that once it does not
+# It reduces the time it takes for getting the adjacency list from ~21 seconds to ~2 seconds
+# It does take ~5 seconds to store it as the .pkl file but since we only do that once it does not
 # contribute to the time in main.py
 with open('pickle_files/adjacency_list.pkl', 'wb') as temp:
-    pickle.dump(adjacency_list, temp)
+    pickle.dump(final_list, temp)
 end = time.time()
 
 print(f'Time taken for storing adjacency list: {end - start}')

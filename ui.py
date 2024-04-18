@@ -7,7 +7,7 @@ from collections import defaultdict
 def default_dict():
     return defaultdict(list)
 
-with open("movies_and_actors.pickle", "rb") as f:
+with open("pickle_files/adjacency_list.pkl", "rb") as f:
     adjacency_list = pickle.load(f)
 
 actor_names = list(adjacency_list.keys())
