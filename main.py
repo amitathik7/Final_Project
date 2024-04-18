@@ -50,4 +50,33 @@ def dijsktra_search(start_name, end_name, adj_list):
 
 
 def bellman_ford_search(start_name, end_name, adj_list):
-    return -1, -1
+    start = time.time()
+    if start_name not in adj_list.keys() or end_name not in adj_list.keys():
+        return -1, (time.time() - start)
+
+    # This is for when the two actors given are the same in which case their compataibility score would be invalid
+    if start_name == end_name:
+        return -1, (time.time() - start)
+
+    dist = defaultdict(float)
+
+    for actor in adj_list:
+        dist[actor] = sys.maxsize
+
+    dist[start_name] = 0
+
+    num_actors = len(adj_list)
+
+    for i in range(num_actors - 1):
+        made_changes = False
+        for curr_actor in adj_list:
+            if dist[curr_actor] != sys.maxsize:
+                for neighbor, movies in adj_list[curr_actor].items():
+                    if dist[curr_actor] + (1 / len(movies)) < dist[neighbor]:
+                        made_changes = True
+                        dist[neighbor] = dist[curr_actor] + (1 / len(movies))
+
+        if made_changes == False:
+            break
+
+    return 1 / dist[end_name], (time.time() - start)
