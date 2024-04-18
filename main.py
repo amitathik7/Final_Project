@@ -2,8 +2,18 @@ import pickle
 import sys
 import time
 from collections import defaultdict
-def dijsktra_search(start_name, end_name, adj_list):
-    if start_name not in adj_list.keys() or end_name not in adj_list.keys():
+
+def default_dict():
+    return defaultdict(list)
+
+start = time.time()
+with open("pickle_files/adjacency_list.pkl", "rb") as f:
+    adjacency_list = pickle.load(f)
+end = time.time()
+
+print(f'Time taken to load adjacency list: {end - start}')
+def dijsktra_search(start_name, end_name):
+    if start_name not in adjacency_list.keys() or end_name not in adjacency_list.keys():
         return -1, -1
 
     start = time.time()
@@ -11,7 +21,7 @@ def dijsktra_search(start_name, end_name, adj_list):
     distance = defaultdict(float)
     visited_actors = set()
 
-    for actor in adj_list:
+    for actor in adjacency_list:
         if actor != start_name:
             distance[actor] = sys.maxsize
         else:
@@ -23,7 +33,7 @@ def dijsktra_search(start_name, end_name, adj_list):
     while (curr_actor != 'invalid'):
         curr_distance = distance[curr_actor]
 
-        for neighbor, movies in adj_list[curr_actor].items():
+        for neighbor, movies in adjacency_list[curr_actor].items():
             neighbor_distance = curr_distance + (1 / len(movies))
             if (distance[neighbor] > neighbor_distance):
                 distance[neighbor] = neighbor_distance
@@ -32,7 +42,7 @@ def dijsktra_search(start_name, end_name, adj_list):
 
         min = sys.maxsize
 
-        for actor in adj_list:
+        for actor in adjacency_list:
             if distance[actor] < min and actor not in visited_actors:
                 curr_actor = actor
                 min = distance[curr_actor]
@@ -50,7 +60,5 @@ def dijsktra_search(start_name, end_name, adj_list):
     return final_score, time_taken
 
 
-def bellman_ford_search(start_name, end_name, adj_list):
-    return -1, -1
-
-# print(dijsktra_search('Will Smith', 'Willem Dafoe', adjacency_list))
+def bellman_ford_search(start_name, end_name):
+    return -1

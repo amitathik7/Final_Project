@@ -2,8 +2,6 @@ import tkinter as tk
 from tkinter import ttk
 import pickle
 from collections import defaultdict
-import main
-from main import *
 
 # Load data from pickle
 def default_dict():
@@ -27,10 +25,6 @@ def calculate_compatibility():
     actor1 = combo_actor1.get()
     actor2 = combo_actor2.get()
     # Placeholder for compatibility calculation
-
-    d_result, d_time = main.dijsktra_search(actor1, actor2, adjacency_list)
-    b_result, b_time = main.bellman_ford_search(actor1, actor2, adjacency_list)
-
     label_result.config(text=f"Compatibility Score: (Placeholder for {actor1} and {actor2})")
 
 # Create the main window
