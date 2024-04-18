@@ -2,16 +2,6 @@ import pickle
 import sys
 import time
 from collections import defaultdict
-
-def default_dict():
-    return defaultdict(list)
-
-start = time.time()
-with open("pickle_files/adjacency_list.pkl", "rb") as f:
-    adjacency_list = pickle.load(f)
-end = time.time()
-
-print(f'Time taken to load adjacency list: {end - start}')
 def dijsktra_search(start_name, end_name, adj_list):
     if start_name not in adj_list.keys() or end_name not in adj_list.keys():
         return -1, -1
