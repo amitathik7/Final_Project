@@ -30,8 +30,8 @@ def calculate_compatibility():
     actor2 = combo_actor2.get()
     # Placeholder for compatibility calculation
 
-    dijk_result, dijk_time = main.dijsktra_search(actor1, actor2)
-    bf_result, bf_time = main.bellman_ford_search(actor1, actor2)
+    dijk_result, dijk_time = main.dijsktra_search(actor1, actor2, adjacency_list)
+    bf_result, bf_time = main.bellman_ford_search(actor1, actor2, adjacency_list)
     label_result.config(text=f"Compatibility Score for {actor1} and {actor2}: {dijk_result} Time: {dijk_time}")
 
 # Create the main window
