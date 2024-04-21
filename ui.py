@@ -16,6 +16,7 @@ with open("pickle_files/adjacency_list.pkl", "rb") as f:
 
 actor_names = list(adjacency_list.keys())
 
+# Search function for the actor names drop-down list
 def search(event):
     if event.keysym == "Return":  # Reduce unnecessary event firing by handling only when Return key is pressed
         return
@@ -30,6 +31,7 @@ def handle_selection_change(event):
     # This will trigger when an actual selection is made either by mouse or keyboard
     event.widget.set(event.widget.get())
 
+#Calls the algorithm from main and rounds and displays it in the UI window
 def run_calculations(actor1, actor2, adjacency_list):
     dijk_result, dijk_time = main.dijsktra_search(actor1, actor2, adjacency_list)
     bf_result, bf_time = main.bellman_ford_search(actor1, actor2, adjacency_list)
@@ -39,27 +41,31 @@ def run_calculations(actor1, actor2, adjacency_list):
     bf_result_rounded = round(bf_result, 2)
     bf_time_rounded = round(bf_time, 2)
 
-    if dijk_result_rounded < 2:
-        rating = "Very Bad"
+    if dijk_result < 0:
+        rating = "Invalid. Make sure Actor(s) exists and name is typed case sensitive."
+    elif dijk_result_rounded < 2:
+        rating = "Very Bad Connection"
     elif dijk_result_rounded < 3:
-        rating = "Not the Best"
+        rating = "Weak Connection"
     elif dijk_result_rounded < 4:
-        rating = "Decent"
+        rating = "Decent Connection"
     elif dijk_result_rounded < 5:
         rating = "Strong Connection"
     elif dijk_result_rounded < 6:
-        rating = "Very Strong"
+        rating = "Very Strong Connection"
     else:
-        rating = "As Close as it Gets!"
+        rating = "As good as it gets! Extremely strong connection!"
 
     root.after(0, label_result.config, {"text": f"Dijsktra Score for {actor1} and {actor2}: {dijk_result_rounded} Time: {dijk_time_rounded} \n Bellman Ford Score: {bf_result_rounded} Time: {bf_time_rounded} \n Rating: {rating}"})
 
+#Handling function for when the calculation is running
 def calculate_compatibility():
     actor1 = combo_actor1.get()
     actor2 = combo_actor2.get()
     label_result.config(text="Calculating... Please wait.")
     Thread(target=run_calculations, args=(actor1, actor2, adjacency_list)).start()
 
+# Window for displaying the information about the program
 def open_info_window():
     info_window = Toplevel(root)
     info_window.title("Information")
@@ -80,18 +86,19 @@ def open_info_window():
     info_label = Label(info_window, text= paragraph_text, background='black', foreground='white', wraplength=280)
     info_label.pack(pady=20)
 
+# Window for the scoring legend of the scores
 def open_legend_window():
     legend_window = Toplevel(root)
     legend_window.title("Scoring Legend")
     legend_window.geometry("400x200")
     legend_window.configure(background='black')
-    legend_text = ("Scoring Legend:\n"
-                   "< 2: Very Bad\n"
-                   "2-3: Not the Best\n"
-                   "3-4: Decent\n"
+    legend_text = ("Scoring Legend:\n\n"
+                   "< 2: Very Bad, not great chemistry between these two\n"
+                   "2-3: Not the Best connection\n"
+                   "3-4: Solidly Connected\n"
                    "4-5: Strong Connection\n"
-                   "5-6: Very Strong\n"
-                   "> 6: As Close as it Gets!")
+                   "5-6: Very Strong Connection\n"
+                   "> 6: As Good as it Gets! These two are dynamite!")
     legend_label = Label(legend_window, text=legend_text, background='black', foreground='white', justify=tk.LEFT, font=("Helvetica", 12))
     legend_label.pack(pady=20, padx=20)
 
@@ -144,7 +151,6 @@ label_result.pack(pady=10)
 button_info = tk.Button(root, text="What is ActorMesh?", command=open_info_window)
 button_info.pack(pady=10)
 
-# Button for the scoring legend
 button_legend = tk.Button(root, text="Open Scoring Legend", command=open_legend_window)
 button_legend.pack(pady=10)
 
