@@ -78,7 +78,7 @@ def open_info_window():
 
     paragraph_text = ("ActorMesh is a program that allows you to see how compatibile any two actors you can think of are! "
                       "Using our advanced algorithm, ActorMesh will go through millions of connections of cast members and the movies"
-                      " they have worked on to see how just compatible two actors are. This tool would be a directors dream to see"
+                      " they have worked on to see how just compatible two actors are. This tool would be a casting director's dream to see"
                       " how they can put a cast together, or can just be used by any movie fan prospecting about how much chemistry their"
                       " favorite hollywood stars have. Due to the nature of the project, we use two different "
                       "algorithms to calculate the rank to compare their speeds, but the rank will be the same each time. "
@@ -90,7 +90,7 @@ def open_info_window():
 def open_legend_window():
     legend_window = Toplevel(root)
     legend_window.title("Scoring Legend")
-    legend_window.geometry("400x200")
+    legend_window.geometry("500x200")
     legend_window.configure(background='black')
     legend_text = ("Scoring Legend:\n\n"
                    "< 2: Very Bad, not great chemistry between these two\n"
